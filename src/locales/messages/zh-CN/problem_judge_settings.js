@@ -12,6 +12,8 @@ return {
     PROBLEM_HAS_SUBMISSION: "题目已有提交，不可切换类型。",
     INVALID_JUDGE_INFO: {
       INVALID_TIME_LIMIT_TASK: "时间限制无效。",
+      INVALID_TOTAL_SCORE: "总分 {1} 无效。",
+      TOTAL_SCORE_TOO_LARGE: "总分 {1} 超过了限制 {2}，请联系管理员。",
       TIME_LIMIT_TOO_LARGE_TASK: "时间限制 {3} ms 过大，请联系管理员。",
       INVALID_TIME_LIMIT_SUBTASK: "子任务 {1} 的时间限制无效。",
       TIME_LIMIT_TOO_LARGE_SUBTASK: "子任务 {1} 的时间限制 {3} ms 过大，请联系管理员。",
@@ -29,6 +31,8 @@ return {
       INVALID_SCORING_TYPE: "未知错误。",
       INVALID_POINTS_SUBTASK: "子任务 {1} 的分值占比 {2} 无效。",
       INVALID_POINTS_TESTCASE: "子任务 {1} 的测试点 {2} 的分值占比 {3} 无效。",
+      SUBTASK_POINTS_SUM_TOO_LARGE: "所有子任务的分值和为 {1}，超过了总分 {2}。",
+      SUBTASK_POINTS_SUM_NOT_EQUAL: "所有子任务的分值和为 {1}，不等于总分 {2}。",
       POINTS_SUM_UP_TO_LARGER_THAN_100_SUBTASKS: "所有子任务的分值占比和为 {1}，超过了满分 100。",
       POINTS_SUM_UP_TO_LARGER_THAN_100_TESTCASES: "子任务 {1} 所有测试点的分值占比和为 {2}，超过了满分 100。",
       INVALID_DEPENDENCY: "子任务 {1} 的依赖子任务编号 {2} 无效。",
@@ -80,6 +84,7 @@ return {
   meta: {
     time_limit: "时间限制",
     memory_limit: "内存限制",
+    total_score: "题目总分",
     input_file: "输入文件",
     output_file: "输出文件",
     use_standard_io: "使用标准输入输出",

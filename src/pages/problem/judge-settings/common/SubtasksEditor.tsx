@@ -172,7 +172,7 @@ let SubtaskEditorTastcaseItem: React.FC<SubtaskEditorTastcaseItemProps> = props 
             disabled={props.testcaseCount === 1}
             icon="percent"
             onChange={(e, { value }) =>
-              (value === "" || (Number.isSafeInteger(Number(value)) && Number(value) >= 0 && Number(value) <= 100)) &&
+              (value === "" || (Number.isSafeInteger(Number(value)) && Number(value) >= 0)) &&
               props.onUpdate({ points: value === "" ? null : Number(value) })
             }
           />
@@ -718,7 +718,7 @@ let SubtaskEditor: React.FC<SubtaskEditorProps> = props => {
                 icon="percent"
                 onChange={(e, { value }) =>
                   (value === "" ||
-                    (Number.isSafeInteger(Number(value)) && Number(value) >= 0 && Number(value) <= 100)) &&
+                    (Number.isSafeInteger(Number(value)) && Number(value) >= 0)) &&
                   props.onUpdate({ points: value === "" ? null : Number(value) })
                 }
               />
@@ -876,15 +876,16 @@ let SubtasksEditor: React.FC<SubtasksEditorProps> = props => {
   );
 
   // For manual subtask editor
+  const totalScore = props.judgeInfo.totalScore || 100;
   const sumSpecfiedPercentagePoints = (judgeInfo.subtasks || [])
     .map(subtask => subtask.points)
     .filter(x => x != null)
     .reduce((sum, x) => sum + x, 0);
   const countUnspecfiedPercentagePoints = (judgeInfo.subtasks || []).filter(subtask => subtask.points == null).length;
   const defaultPercentagePoints =
-    (sumSpecfiedPercentagePoints > 100
+    (sumSpecfiedPercentagePoints > totalScore
       ? 0
-      : Math.round((100 - sumSpecfiedPercentagePoints) / countUnspecfiedPercentagePoints)) || 0;
+      : Math.round((totalScore - sumSpecfiedPercentagePoints) / countUnspecfiedPercentagePoints)) || 0;
 
   function updateSubtasks($spec: Spec<Subtask[]>) {
     props.onUpdateJudgeInfo({ subtasks: update(judgeInfo.subtasks, $spec) });

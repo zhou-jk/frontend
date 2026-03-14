@@ -12,6 +12,8 @@ return {
     PROBLEM_HAS_SUBMISSION: "[TBT] The type of a problem with submissions can't be switched.",
     INVALID_JUDGE_INFO: {
       INVALID_TIME_LIMIT_TASK: "[TBT] Invalid time limit.",
+      INVALID_TOTAL_SCORE: "[TBT] Invalid total score {1}.",
+      TOTAL_SCORE_TOO_LARGE: "[TBT] Total score {1} exceeds the limit {2}, please contact the admin.",
       TIME_LIMIT_TOO_LARGE_TASK: "[TBT] The time limit {3} ms is too large, please contact the admin.",
       INVALID_TIME_LIMIT_SUBTASK: "[TBT] The time limit of subtask {1} is invalid.",
       TIME_LIMIT_TOO_LARGE_SUBTASK:
@@ -33,6 +35,8 @@ return {
       INVALID_SCORING_TYPE: "[TBT] Unknown error.",
       INVALID_POINTS_SUBTASK: "[TBT] Subtask {1}'s percentage points {2} is invalid.",
       INVALID_POINTS_TESTCASE: "[TBT] Subtask {1}'s testcase {2}'s percentage points {2} is invalid.",
+      SUBTASK_POINTS_SUM_TOO_LARGE: "[TBT] Sum of subtask points {1} exceeds total score {2}.",
+      SUBTASK_POINTS_SUM_NOT_EQUAL: "[TBT] Sum of subtask points {1} does not equal total score {2}.",
       POINTS_SUM_UP_TO_LARGER_THAN_100_SUBTASKS:
         "[TBT] The sum of all subtasks' points is {1}, exceeding the full points 100.",
       POINTS_SUM_UP_TO_LARGER_THAN_100_TESTCASES:
@@ -86,6 +90,7 @@ return {
   meta: {
     time_limit: "時間制限",
     memory_limit: "メモリ制限",
+    total_score: "総得点",
     input_file: "入力ファイル",
     output_file: "出力ファイル",
     use_standard_io: "標準入出力を使用する",

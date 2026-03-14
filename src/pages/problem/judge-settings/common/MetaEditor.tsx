@@ -10,6 +10,7 @@ import { JudgeInfoProcessor, EditorComponentProps } from "./interface";
 export interface JudgeInfoWithMeta {
   timeLimit?: number;
   memoryLimit?: number;
+  totalScore?: number;
   fileIo?: {
     inputFilename: string;
     outputFilename: string;
@@ -68,6 +69,22 @@ let MetaEditor: React.FC<MetaEditorProps> = props => {
             </Form.Field>
           </Form.Group>
         )}
+        <Form.Group>
+          <Form.Field width={8}>
+            <label>{_(".meta.total_score")}</label>
+            <Input
+              className={style.labeledInput}
+              value={judgeInfo.totalScore == null ? "" : judgeInfo.totalScore}
+              placeholder="100"
+              icon="clipboard check"
+              iconPosition="left"
+              onChange={(e, { value }) =>
+                (value === "" || (Number.isSafeInteger(Number(value)) && Number(value) > 0)) &&
+                props.onUpdateJudgeInfo({ totalScore: value === "" ? null : Number(value) })
+              }
+            />
+          </Form.Field>
+        </Form.Group>
         {props.options.enableFileIo && judgeInfo.fileIo && (
           <Form.Group>
             <Form.Field width={8}>
@@ -136,6 +153,7 @@ const judgeInfoProcessor: JudgeInfoProcessor<JudgeInfoWithMeta, MetaEditorOption
     return {
       timeLimit: options.enableTimeMemoryLimit && Number.isSafeInteger(raw.timeLimit) ? raw.timeLimit : null,
       memoryLimit: options.enableTimeMemoryLimit && Number.isSafeInteger(raw.memoryLimit) ? raw.memoryLimit : null,
+      totalScore: Number.isSafeInteger(raw.totalScore) && raw.totalScore > 0 ? raw.totalScore : null,
       fileIo:
         options.enableFileIo &&
         raw.fileIo &&
@@ -154,6 +172,7 @@ const judgeInfoProcessor: JudgeInfoProcessor<JudgeInfoWithMeta, MetaEditorOption
       delete judgeInfo.timeLimit;
       delete judgeInfo.memoryLimit;
     }
+    if (judgeInfo.totalScore == null) delete judgeInfo.totalScore;
     if (!judgeInfo.runSamples) delete judgeInfo.runSamples;
     if (!judgeInfo.fileIo) delete judgeInfo.fileIo;
   }

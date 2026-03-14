@@ -7,12 +7,14 @@ interface ScoreTextProps {
 }
 
 const ScoreText: React.FC<ScoreTextProps> = props => {
-  return <span className={style["score_" + Math.floor(props.score / 10)]}>{props.score}</span>;
+  const percentage = Math.min(100, props.score);
+  return <span className={style["score_" + Math.floor(percentage / 10)]}>{props.score}</span>;
 };
 
 export default ScoreText;
 
 export function getScoreColor(score: number | string): string {
+  const percentage = Math.min(100, Number(score) || 0);
   return [
     "#ff4f4f",
     "#ff694f",
@@ -25,5 +27,5 @@ export function getScoreColor(score: number | string): string {
     "#b0d628",
     "#93b127",
     "#25ad40"
-  ][Math.floor((Number(score) || 0) / 10)];
+  ][Math.floor(percentage / 10)];
 }
